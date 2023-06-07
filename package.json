@@ -1,0 +1,15 @@
+{
+  "name": "mmm-soliscloud",
+  "version": "1.0.0",
+  "description": "MM module for Soliscloud API",
+  "main": "node_helper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthew Lee",
+  "license": "ISC",
+  "dependencies": {
+    "base-64": "^1.0.0",
+    "crypto": "^1.0.1"
+  }
+}
