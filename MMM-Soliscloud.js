@@ -1,13 +1,25 @@
+function addCellsToRow(tr, leftText, rightText) {
+  let td = document.createElement('td');
+  td.setAttribute('class', 'soliscloud-cell');
+  td.innerText = leftText;
+  tr.appendChild(td);
+
+  td = document.createElement('td');
+  td.setAttribute('class', 'soliscloud-cell');
+  td.innerText = rightText;
+  tr.appendChild(td);
+}
+
 Module.register("MMM-Soliscloud", {
   // Default configs
   defaults: {
     intervalSecs: 300,
-    // plantName: false,
-    // lastUpdated: true,
-    // currentPower: true,
-    // dayTotalGenerated: true,
-    // monthTotalGenerated: false,
-    // totalGenerated: false,
+    lastUpdated: true,
+    currentPower: true,
+    dayTotalGenerated: true,
+    monthTotalGenerated: false,
+    yearTotalGenerated: false,
+    totalGenerated: false,
   },
 
   start: function () {
@@ -46,79 +58,79 @@ Module.register("MMM-Soliscloud", {
   // Override the DOM generator
   getDom: function () {
     let wrapper = document.createElement('div');
-    // wrapper.setAttribute('class', 'growatt-data');
-    // wrapper.innerText = 'Growatt';
-    // let table = document.createElement('table');
-    // table.setAttribute('class', 'growatt-table');
-    // wrapper.appendChild(table);
+    wrapper.setAttribute('class', 'soliscloud-data');
+    wrapper.innerText = 'Soliscloud';
+    let table = document.createElement('table');
+    table.setAttribute('class', 'soliscloud-table');
+    wrapper.appendChild(table);
 
-    // let tr = document.createElement('tr');
-    // tr.setAttribute('class', 'growatt-row');
+    let tr = document.createElement('tr');
+    tr.setAttribute('class', 'soliscloud-row');
 
-    // if (this.result) {
-    //   const mydata = this.result.payload[0].data.devicesData[0].data;
+    if (this.soliscloudData) {
+      const mydata = this.soliscloudData.payload.payload;
 
-    //   let td;
+      let td;
 
-    //   if (this.config.plantName) {
-    //     tr = document.createElement('tr');
-    //     tr.setAttribute('class', 'growatt-row');
-    //     addCellsToRow(tr, 'Plant:', mydata.deviceData.plantName);
-    //     table.appendChild(tr);
-    //   }
+      if (this.config.lastUpdated) {
+        tr = document.createElement('tr');
+        td = document.createElement('td');
+        td.setAttribute('class', 'soliscloud-cell');
+        td.innerText = 'Updated:';
+        tr.appendChild(td);
 
-    //   if (this.config.lastUpdated) {
-    //     tr = document.createElement('tr');
-    //     td = document.createElement('td');
-    //     td.setAttribute('class', 'growatt-cell');
-    //     td.innerText = 'Updated:';
-    //     tr.appendChild(td);
+        td = document.createElement('td');
+        td.setAttribute('class', 'soliscloud-cell');
+        if (mydata.dataTimestampStr) {
+          td.innerText = mydata.dataTimestampStr.split(' ')[1];
+        } else {
+          td.innerText = 'Pending';
+        }
+        tr.appendChild(td);
+        table.appendChild(tr);
+      }
 
-    //     td = document.createElement('td');
-    //     td.setAttribute('class', 'growatt-cell');
-    //     if (this.result.payload) {
-    //       td.innerText = mydata.deviceData.lastUpdateTime.split(' ')[1];
-    //     } else {
-    //       td.innerText = 'Pending';
-    //     }
-    //     tr.appendChild(td);
-    //     table.appendChild(tr);
-    //   }
+      if (this.config.currentPower) {
+        tr = document.createElement('tr');
+        tr.setAttribute('class', 'soliscloud-row');
+        addCellsToRow(tr, 'Current:', mydata.power + ' ' + mydata.powerStr);
+        table.appendChild(tr);
+      }
 
-    //   if (this.config.currentPower) {
-    //     tr = document.createElement('tr');
-    //     tr.setAttribute('class', 'growatt-row');
-    //     addCellsToRow(tr, 'Current:', mydata.deviceData.pac + ' W');
-    //     table.appendChild(tr);
-    //   }
+      if (this.config.dayTotalGenerated) {
+        tr = document.createElement('tr');
+        tr.setAttribute('class', 'soliscloud-row');
+        addCellsToRow(tr, 'Today:',  mydata.dayEnergy + ' ' + mydata.dayEnergyStr);
+        table.appendChild(tr);
+      }
 
-    //   if (this.config.dayTotalGenerated) {
-    //     tr = document.createElement('tr');
-    //     tr.setAttribute('class', 'growatt-row');
-    //     addCellsToRow(tr, 'Today:',  mydata.totalData.eToday + ' kWh');
-    //     table.appendChild(tr);
-    //   }
+      if (this.config.monthTotalGenerated) {
+        tr = document.createElement('tr');
+        tr.setAttribute('class', 'soliscloud-row');
+        addCellsToRow(tr, 'Month: ', mydata.monthEnergy + ' ' + mydata.monthEnergyStr);
+        table.appendChild(tr);
+      }
 
-    //   if (this.config.monthTotalGenerated) {
-    //     tr = document.createElement('tr');
-    //     tr.setAttribute('class', 'growatt-row');
-    //     addCellsToRow(tr, 'Month: ', mydata.deviceData.eMonth + ' kWh');
-    //     table.appendChild(tr);
-    //   }
+      if (this.config.yearTotalGenerated) {
+        tr = document.createElement('tr');
+        tr.setAttribute('class', 'soliscloud-row');
+        addCellsToRow(tr, 'Year: ', mydata.yearEnergy + ' ' + mydata.yearEnergyStr);
+        table.appendChild(tr);
+      }
 
-    //   if (this.config.totalGenerated) {
-    //     tr = document.createElement('tr');
-    //     tr.setAttribute('class', 'growatt-row');
-    //     addCellsToRow(tr, 'Total: ', mydata.deviceData.eTotal + ' kWh');
-    //     table.appendChild(tr);
-    //   }
-    // } else {
-    //   let td = document.createElement('td');
-    //   td.setAttribute('class', 'growatt-cell');
-    //   td.innerText = 'Pending...';
-    //   tr.appendChild(td);
-    //   table.appendChild(tr);
-    // }
+      if (this.config.totalGenerated) {
+        tr = document.createElement('tr');
+        tr.setAttribute('class', 'soliscloud-row');
+        addCellsToRow(tr, 'Total: ', mydata.allEnergy + ' ' + mydata.allEnergyStr);
+        table.appendChild(tr);
+      }
+    } else {
+      let td = document.createElement('td');
+      td.setAttribute('class', 'soliscloud-cell');
+      td.innerText = 'Pending...';
+      tr.appendChild(td);
+      table.appendChild(tr);
+    }
 
     return wrapper;
   },
