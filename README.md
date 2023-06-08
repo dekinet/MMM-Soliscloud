@@ -1,2 +1,57 @@
 # MMM-Soliscloud
-Magic Mirror module for Soliscloud API
+[Magic Mirror](https://github.com/MichMich/MagicMirror) module for displaying [Soliscloud](https://solis-service.solisinverters.com/en/support/solutions/articles/44002212561-api-access-soliscloud) inverter data.
+
+This module pulls data from the Soliscloud API and displays it as a simple table on the Magic Mirror.
+
+## Installation
+* Install [MagicMirror](https://docs.magicmirror.builders/)
+* `cd <MagicMirrorInstallation>/modules`
+* `git clone https://github.com/dekinet/MMM-Soliscloud.git`
+* `cd MMM-Soliscloud`
+* `npm install`
+
+## Configuration
+There are a number of configuration options available:
+
+| Option               | Default          | Description  |
+| ----------------------|-----------------| -------------|
+| `intervalSecs`        | 300             | Defines how often to poll the API for data. Don't do this too quickly, or your requests will be rejected by the server. |
+| `lastUpdated`         | true            | Display the timestamp of the last time data was sent to the server by the inverter. |
+| `currentPower`        | true            | Display the current power generated. |
+| `dayTotalGenerated`   | true            | Display the amount of power generated today. |
+| `monthTotalGenerated` | false           | Display the amount of power generated this month. |
+| `yearTotalGenerated`  | false           | Display the amount of power generated this year. |
+| `totalGenerated`      | false           | Display the total amount of power generated. |
+
+In addition, the MM config file must include you Soliscloud API key and secret. There are no default values for these.
+
+An entry in the module configuration file might look like this:
+```
+  {
+    module: "MMM-Soliscloud",
+    position: "top_right",
+    config: {
+      intervalSecs: 600,
+      plantName: true,
+      apiKey: "123456",
+      apiSecret: "abcdefg",
+  },
+```
+
+## Dependencies
+* [MagicMirror](https://github.com/MichMich/MagicMirror)
+* [base-64](https://www.npmjs.com/package/base-64): Used to base-64 encode requests/data sent to the API
+* [crypto](https://www.npmjs.com/package/crypto): Used to create a digest of data sent to the API
+
+## Styling
+A simple `styles.css` file is included. The generated data utilises the following classes:
+
+| Class Name                | Used |
+| --------------------------|------|
+| `soliscloud-data`         | The whole generated div |
+| `soliscloud-table`        | The table containing Soliscloud data |
+| `soliscloud-row`          | All rows in the table |
+| `soliscloud-cell`         | All cells in the table |
+
+## Limitations
+I only had access to one inverter, so received data from multiple interverters is not  handled. Fixes are welcome.
