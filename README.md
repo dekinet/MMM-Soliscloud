@@ -32,7 +32,7 @@ An entry in the module configuration file might look like this:
     position: "top_right",
     config: {
       intervalSecs: 600,
-      plantName: true,
+      yearTotalGenerated: true,
       apiKey: "123456",
       apiSecret: "abcdefg",
   },
