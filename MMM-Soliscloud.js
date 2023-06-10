@@ -20,6 +20,9 @@ Module.register("MMM-Soliscloud", {
     monthTotalGenerated: false,
     yearTotalGenerated: false,
     totalGenerated: false,
+    dailyIncome: false,
+    allIncome: false,
+    price: false,
   },
 
   start: function () {
@@ -122,6 +125,27 @@ Module.register("MMM-Soliscloud", {
         tr = document.createElement('tr');
         tr.setAttribute('class', 'soliscloud-row');
         addCellsToRow(tr, 'Total: ', mydata.allEnergy + ' ' + mydata.allEnergyStr);
+        table.appendChild(tr);
+      }
+
+      if (this.config.price) {
+        tr = document.createElement('tr');
+        tr.setAttribute('class', 'soliscloud-row');
+        addCellsToRow(tr, 'Price: ', mydata.money + mydata.price);
+        table.appendChild(tr);
+      }
+
+      if (this.config.dailyIncome) {
+        tr = document.createElement('tr');
+        tr.setAttribute('class', 'soliscloud-row');
+        addCellsToRow(tr, 'Daily Income: ', mydata.money + mydata.dayIncome);
+        table.appendChild(tr);
+      }
+
+      if (this.config.allIncome) {
+        tr = document.createElement('tr');
+        tr.setAttribute('class', 'soliscloud-row');
+        addCellsToRow(tr, 'All Income: ', mydata.money + mydata.allIncome);
         table.appendChild(tr);
       }
     } else {
