@@ -1,3 +1,5 @@
+const state_alarm = 3;
+
 function addCellsToRow(tr, leftText, rightText) {
   let td = document.createElement('td');
   td.setAttribute('class', 'soliscloud-cell');
@@ -23,12 +25,14 @@ Module.register("MMM-Soliscloud", {
     dailyIncome: false,
     allIncome: false,
     price: false,
+    displayAlarms: true,
   },
 
   start: function () {
     Log.log('Starting module: ' + this.name);
     soliscloud = this;
     this.soliscloudData = null;
+    this.soliscloudAlarms = null;
 
     soliscloud.getData();
 
@@ -54,6 +58,17 @@ Module.register("MMM-Soliscloud", {
     if (notification === "MMM_SOLISCLOUD_GOT_DATA") {
       Log.info('MMM_SOLISCLOUD_GOT_DATA: ' + JSON.stringify(payload));
       this.soliscloudData = { payload: payload };
+      if ((payload.payload.state == state_alarm) && (soliscloud.config.displayAlarms)) {
+        soliscloud.sendSocketNotification("MMM_SOLISCLOUD_GET_ALARMS", {
+          config: soliscloud.config,
+        });
+      } else {
+        this.soliscloudAlarms = null;
+      }
+      this.updateDom();
+    } else if (notification == "MMM_SOLISCLOUD_GOT_ALARMS") {
+      Log.info('MMM_SOLISCLOUD_GOT_ALARMS: ' + JSON.stringify(payload));
+      this.soliscloudAlarms = { payload: payload };
       this.updateDom();
     }
   },
@@ -146,6 +161,14 @@ Module.register("MMM-Soliscloud", {
         tr = document.createElement('tr');
         tr.setAttribute('class', 'soliscloud-row');
         addCellsToRow(tr, 'All Income: ', mydata.money + mydata.allIncome);
+        table.appendChild(tr);
+      }
+
+      if (mydata.state == state_alarm) {   // Alarm
+        tr = document.createElement('tr');
+        tr.setAttribute('class', 'solisloud-row soliscloud-alarm');
+        const detail = (this.soliscloudAlarms ? this.soliscloudAlarms.payload.payload.alarmMsg : "Pending...");
+        addCellsToRow(tr, "ALARM:", detail);
         table.appendChild(tr);
       }
     } else {

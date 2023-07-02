@@ -1,3 +1,20 @@
 .soliscloud-cell {
   padding-right: 0px;
 }
+
+@keyframes blink-text {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.soliscloud-alarm {
+  animation: blink-text 1.9s linear infinite;
+  color: red;
+}

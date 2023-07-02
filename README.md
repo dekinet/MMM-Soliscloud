@@ -22,9 +22,13 @@ There are a number of configuration options available:
 | `monthTotalGenerated` | false           | Display the amount of power generated this month. |
 | `yearTotalGenerated`  | false           | Display the amount of power generated this year. |
 | `totalGenerated`      | false           | Display the total amount of power generated. |
+<<<<<<< HEAD
 | `price`               | false           | Display the current price. |
 | `dailyIncome`         | false           | Display the daily income value. |
 | `allIncome`           | false           | Display the total income value. |
+=======
+| `displayAlarms`       | true            | Display the most recent alarm (if active). |
+>>>>>>> e134d32 (Display alarms when active.)
 
 In addition, the MM config file must include you Soliscloud API key and secret. There are no default values for these.
 
@@ -56,6 +60,8 @@ A simple `styles.css` file is included. The generated data utilises the followin
 | `soliscloud-table`        | The table containing Soliscloud data |
 | `soliscloud-row`          | All rows in the table |
 | `soliscloud-cell`         | All cells in the table |
+| `soliscloud-alarm`        | Applied to the entire ALARM row (if active). Flashing red by default. |
 
 ## Limitations
 I only had access to one inverter, so received data from multiple interverters is not  handled. Fixes are welcome.
+Alarm handling is very basic and not well tested. Only the most recent active alarm will be displayed (if alarms are configured to be displayed).
