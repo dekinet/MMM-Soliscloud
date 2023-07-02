@@ -22,13 +22,10 @@ There are a number of configuration options available:
 | `monthTotalGenerated` | false           | Display the amount of power generated this month. |
 | `yearTotalGenerated`  | false           | Display the amount of power generated this year. |
 | `totalGenerated`      | false           | Display the total amount of power generated. |
-<<<<<<< HEAD
 | `price`               | false           | Display the current price. |
 | `dailyIncome`         | false           | Display the daily income value. |
 | `allIncome`           | false           | Display the total income value. |
-=======
 | `displayAlarms`       | true            | Display the most recent alarm (if active). |
->>>>>>> e134d32 (Display alarms when active.)
 
 In addition, the MM config file must include you Soliscloud API key and secret. There are no default values for these.
 
