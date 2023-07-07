@@ -26,6 +26,7 @@ There are a number of configuration options available:
 | `dailyIncome`         | false           | Display the daily income value. |
 | `allIncome`           | false           | Display the total income value. |
 | `displayAlarms`       | true            | Display the most recent alarm (if active). |
+| `alarmTimeFormat`     | "lll"           | [Moment display string](https://momentjs.com/docs/#/displaying) used for formatting the start time of the most recent alarm. |
 
 In addition, the MM config file must include you Soliscloud API key and secret. There are no default values for these.
 

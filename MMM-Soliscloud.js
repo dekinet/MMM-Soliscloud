@@ -26,6 +26,8 @@ Module.register("MMM-Soliscloud", {
     allIncome: false,
     price: false,
     displayAlarms: true,
+    alarmTimeFormat: "lll",
+    forceAlarmTest: false,
   },
 
   start: function () {
@@ -33,6 +35,7 @@ Module.register("MMM-Soliscloud", {
     soliscloud = this;
     this.soliscloudData = null;
     this.soliscloudAlarms = null;
+    this.timeZone = null;
 
     soliscloud.getData();
 
@@ -56,8 +59,10 @@ Module.register("MMM-Soliscloud", {
 
   socketNotificationReceived: function(notification, payload) {
     if (notification === "MMM_SOLISCLOUD_GOT_DATA") {
+      if (soliscloud.config.forceAlarmTest) payload.payload.state = state_alarm;
       Log.info('MMM_SOLISCLOUD_GOT_DATA: ' + JSON.stringify(payload));
       this.soliscloudData = { payload: payload };
+      this.timeZone = payload.payload.timeZone;
       if ((payload.payload.state == state_alarm) && (soliscloud.config.displayAlarms)) {
         soliscloud.sendSocketNotification("MMM_SOLISCLOUD_GET_ALARMS", {
           config: soliscloud.config,
@@ -169,6 +174,16 @@ Module.register("MMM-Soliscloud", {
         tr.setAttribute('class', 'solisloud-row soliscloud-alarm');
         const detail = (this.soliscloudAlarms ? this.soliscloudAlarms.payload.payload.alarmMsg : "Pending...");
         addCellsToRow(tr, "ALARM:", detail);
+        table.appendChild(tr);
+
+        tr = document.createElement('tr');
+        tr.setAttribute('class', 'solisloud-row');
+        let startAt = "Pending...";
+        if (this.soliscloudAlarms) {
+           let start = moment.unix(this.soliscloudAlarms.payload.payload.alarmBeginTime / 1000);
+           startAt = start.format(this.config.alarmTimeFormat);
+        }
+        addCellsToRow(tr, "Alarm Started:", startAt);
         table.appendChild(tr);
       }
     } else {
