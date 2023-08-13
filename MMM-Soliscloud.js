@@ -28,6 +28,8 @@ Module.register("MMM-Soliscloud", {
     displayAlarms: true,
     alarmTimeFormat: "lll",
     forceAlarmTest: false,
+    gpioOnAlarm: 0,
+    gpioOnAlarmState: "high",
   },
 
   start: function () {

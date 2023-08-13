@@ -27,6 +27,8 @@ There are a number of configuration options available:
 | `allIncome`           | false           | Display the total income value. |
 | `displayAlarms`       | true            | Display the most recent alarm (if active). |
 | `alarmTimeFormat`     | "lll"           | [Moment display string](https://momentjs.com/docs/#/displaying) used for formatting the start time of the most recent alarm. |
+| `gpioOnAlarm`         | 0               | Set the Raspberry Pi GPIO number to drive when an alarm is active. Setting to 0 disables this feature. Tested on a Raspberry Pi 3 B+, |
+| `gpioOnAlarmState`    | "high"          | If driving a GPIO pin is enabled, the pin will be driven to this state when an alarm is active. Valid values are "high" and "low". |
 
 In addition, the MM config file must include you Soliscloud API key and secret. There are no default values for these.
 
@@ -48,6 +50,7 @@ An entry in the module configuration file might look like this:
 * [MagicMirror](https://github.com/MichMich/MagicMirror)
 * [base-64](https://www.npmjs.com/package/base-64): Used to base-64 encode requests/data sent to the API
 * [crypto](https://www.npmjs.com/package/crypto): Used to create a digest of data sent to the API
+* [onoff](https://www.npmjs.com/package/onoff): Used to activate GPIO when alarms active
 
 ## Styling
 A simple `styles.css` file is included. The generated data utilises the following classes:

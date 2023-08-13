@@ -10,6 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "base-64": "^1.0.0",
-    "crypto": "^1.0.1"
+    "crypto": "^1.0.1",
+    "onoff": "latest"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^3.2.9"
   }
 }
