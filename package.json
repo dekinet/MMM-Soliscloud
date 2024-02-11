@@ -4,7 +4,8 @@
   "description": "MM module for Soliscloud API",
   "main": "node_helper.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall":"./postinstall"
   },
   "author": "Matthew Lee",
   "license": "ISC",
@@ -12,8 +13,5 @@
     "base-64": "^1.0.0",
     "crypto": "^1.0.1",
     "onoff": "latest"
-  },
-  "devDependencies": {
-    "electron-rebuild": "^3.2.9"
   }
 }
