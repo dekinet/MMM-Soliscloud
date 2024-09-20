@@ -3,6 +3,11 @@
 
 This module pulls data from the Soliscloud API and displays it as a simple table on the Magic Mirror.
 
+## Screenshots
+
+![screenshot 1](screenshot1.png)
+![screenshot 2](screenshot2.png)
+
 ## Installation
 * Install [MagicMirror](https://docs.magicmirror.builders/)
 * `cd <MagicMirrorInstallation>/modules`
