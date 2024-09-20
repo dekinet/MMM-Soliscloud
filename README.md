@@ -2,7 +2,7 @@
 
 [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) module for displaying [Soliscloud](https://solis-service.solisinverters.com/en/support/solutions/articles/44002212561-api-access-soliscloud) inverter data.
 
-This module pulls data from the Soliscloud API and displays it as a simple table on the Magic Mirror.
+This module pulls data from the Soliscloud API and displays it as a simple table on the MagicMirror.
 
 ## Screenshots
 
@@ -11,13 +11,27 @@ This module pulls data from the Soliscloud API and displays it as a simple table
 
 ## Installation
 
-* Install [MagicMirror²](https://docs.magicmirror.builders/)
-* `cd <MagicMirrorInstallation>/modules`
-* `git clone https://github.com/dekinet/MMM-Soliscloud.git`
-* `cd MMM-Soliscloud`
-* `npm install`
+Just clone the module into your modules directory and install the dependencies:
+
+```bash
+cd ~/MagicMirror/modules
+git clone https://github.com/dekinet/MMM-Soliscloud
+cd MMM-Soliscloud
+npm install
+```
+
+## Update
+
+Just enter the MMM-PublicTransportHafas directory, pull the update and install the dependencies:
+
+```bash
+cd ~/MagicMirror/modules/MMM-Soliscloud
+git pull
+npm install
+```
 
 ## Configuration
+
 There are a number of configuration options available:
 
 | Option               | Default          | Description  |
@@ -40,17 +54,19 @@ There are a number of configuration options available:
 In addition, the MM config file must include you Soliscloud API key and secret. There are no default values for these.
 
 An entry in the module configuration file might look like this:
-```
-  {
-    module: "MMM-Soliscloud",
-    position: "top_right",
-    config: {
-      intervalSecs: 600,
-      yearTotalGenerated: true,
-      allIncome: true,
-      apiKey: "123456",
-      apiSecret: "abcdefg",
-  },
+
+```js
+    {
+      module: "MMM-Soliscloud",
+      position: "top_right",
+      config: {
+        intervalSecs: 600,
+        yearTotalGenerated: true,
+        allIncome: true,
+        apiKey: "123456",
+        apiSecret: "abcdefg",
+      }
+    },
 ```
 
 ## Dependencies
@@ -61,6 +77,7 @@ An entry in the module configuration file might look like this:
 * [onoff](https://www.npmjs.com/package/onoff): Used to activate GPIO when alarms active
 
 ## Styling
+
 A simple `styles.css` file is included. The generated data utilises the following classes:
 
 | Class Name                | Used |
@@ -72,5 +89,6 @@ A simple `styles.css` file is included. The generated data utilises the followin
 | `soliscloud-alarm`        | Applied to the entire ALARM row (if active). Flashing red by default. |
 
 ## Limitations
+
 I only had access to one inverter, so received data from multiple interverters is not  handled. Fixes are welcome.
 Alarm handling is very basic and not well tested. Only the most recent active alarm will be displayed (if alarms are configured to be displayed).
