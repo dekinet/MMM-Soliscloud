@@ -5,7 +5,7 @@
   "main": "node_helper.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall":"./postinstall"
+    "postinstall": "./postinstall"
   },
   "author": "Matthew Lee",
   "license": "MIT",
@@ -14,10 +14,14 @@
     "crypto": "^1.0.1",
     "onoff": "latest"
   },
-	"keywords": [
+  "keywords": [
     "MagicMirror",
     "Soliscloud",
     "Solis",
     "solar"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dekinet/MMM-Soliscloud.git"
+  }
 }
