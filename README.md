@@ -1,5 +1,6 @@
 # MMM-Soliscloud
-[Magic Mirror](https://github.com/MichMich/MagicMirror) module for displaying [Soliscloud](https://solis-service.solisinverters.com/en/support/solutions/articles/44002212561-api-access-soliscloud) inverter data.
+
+[MagicMirror²](https://github.com/MichMich/MagicMirror) module for displaying [Soliscloud](https://solis-service.solisinverters.com/en/support/solutions/articles/44002212561-api-access-soliscloud) inverter data.
 
 This module pulls data from the Soliscloud API and displays it as a simple table on the Magic Mirror.
 
@@ -9,7 +10,8 @@ This module pulls data from the Soliscloud API and displays it as a simple table
 ![screenshot 2](screenshot2.png)
 
 ## Installation
-* Install [MagicMirror](https://docs.magicmirror.builders/)
+
+* Install [MagicMirror²](https://docs.magicmirror.builders/)
 * `cd <MagicMirrorInstallation>/modules`
 * `git clone https://github.com/dekinet/MMM-Soliscloud.git`
 * `cd MMM-Soliscloud`
@@ -52,7 +54,8 @@ An entry in the module configuration file might look like this:
 ```
 
 ## Dependencies
-* [MagicMirror](https://github.com/MichMich/MagicMirror)
+
+* [MagicMirror²](https://github.com/MichMich/MagicMirror)
 * [base-64](https://www.npmjs.com/package/base-64): Used to base-64 encode requests/data sent to the API
 * [crypto](https://www.npmjs.com/package/crypto): Used to create a digest of data sent to the API
 * [onoff](https://www.npmjs.com/package/onoff): Used to activate GPIO when alarms active
