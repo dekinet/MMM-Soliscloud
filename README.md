@@ -36,20 +36,20 @@ There are a number of configuration options available:
 
 | Option               | Default          | Description  |
 | ----------------------|-----------------| -------------|
-| `intervalSecs`        | 300             | Defines how often to poll the API for data. Don't do this too quickly, or your requests will be rejected by the server. |
-| `lastUpdated`         | true            | Display the timestamp of the last time data was sent to the server by the inverter. |
-| `currentPower`        | true            | Display the current power generated. |
-| `dayTotalGenerated`   | true            | Display the amount of power generated today. |
-| `monthTotalGenerated` | false           | Display the amount of power generated this month. |
-| `yearTotalGenerated`  | false           | Display the amount of power generated this year. |
-| `totalGenerated`      | false           | Display the total amount of power generated. |
-| `price`               | false           | Display the current price. |
-| `dailyIncome`         | false           | Display the daily income value. |
-| `allIncome`           | false           | Display the total income value. |
-| `displayAlarms`       | true            | Display the most recent alarm (if active). |
-| `alarmTimeFormat`     | "lll"           | [Moment display string](https://momentjs.com/docs/#/displaying) used for formatting the start time of the most recent alarm. |
-| `gpioOnAlarm`         | 0               | Set the Raspberry Pi GPIO number to drive when an alarm is active. Setting to 0 disables this feature. Tested on a Raspberry Pi 3 B+, |
-| `gpioOnAlarmState`    | "high"          | If driving a GPIO pin is enabled, the pin will be driven to this state when an alarm is active. Valid values are "high" and "low". |
+| `intervalSecs`        | `300`             | Defines how often to poll the API for data. Don't do this too quickly, or your requests will be rejected by the server. |
+| `lastUpdated`         | `true`            | Display the timestamp of the last time data was sent to the server by the inverter. |
+| `currentPower`        | `true`            | Display the current power generated. |
+| `dayTotalGenerated`   | `true`            | Display the amount of power generated today. |
+| `monthTotalGenerated` | `false`           | Display the amount of power generated this month. |
+| `yearTotalGenerated`  | `false`           | Display the amount of power generated this year. |
+| `totalGenerated`      | `false`           | Display the total amount of power generated. |
+| `price`               | `false`           | Display the current price. |
+| `dailyIncome`         | `false`           | Display the daily income value. |
+| `allIncome`           | `false`           | Display the total income value. |
+| `displayAlarms`       | `true`            | Display the most recent alarm (if active). |
+| `alarmTimeFormat`     | `"lll"`           | [Moment display string](https://momentjs.com/docs/#/displaying) used for formatting the start time of the most recent alarm. |
+| `gpioOnAlarm`         | `0`               | Set the Raspberry Pi GPIO number to drive when an alarm is active. Setting to `0` disables this feature. Tested on a Raspberry Pi 3 B+, |
+| `gpioOnAlarmState`    | `"high"`          | If driving a GPIO pin is enabled, the pin will be driven to this state when an alarm is active. Valid values are `"high"` and `"low"`. |
 
 In addition, the MM config file must include you Soliscloud API key and secret. There are no default values for these.
 
