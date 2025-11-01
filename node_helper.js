@@ -3,8 +3,18 @@ const NodeHelper = require("node_helper");
 const https = require("node:https");
 const base64 = require("base-64");
 const crypto = require("crypto");
-const Gpio = require("onoff").Gpio;
 const { Buffer } = require("node:buffer");
+
+let Gpio = null;
+try {
+  Gpio = require("onoff").Gpio;
+} catch (error) {
+  if (error.code === "MODULE_NOT_FOUND") {
+    console.log("onoff module is not installed");
+  } else {
+    console.error("Error requiring optional dependency: ", error);
+  }
+}
 
 const stationList = '/v1/api/userStationList';
 const stationListPayload = '{"pageNo":1,"pageSize":10}';
@@ -13,6 +23,7 @@ const alarmListPayload = '{"pageNo":1,"pageSize":20}';
 let gpio_out = null;
 
 const setGpio = (active, config) => {
+  if (!Gpio) return;
   if (!config.gpioOnAlarm) return;
   if (!gpio_out) gpio_out = new Gpio(config.gpioOnAlarm, 'out');
   let writeState = 0;
